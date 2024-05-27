@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/react-router-6-drawers/static/css/main.537e4070.css",
-    "main.js": "/react-router-6-drawers/static/js/main.b038c148.js",
+    "main.js": "/react-router-6-drawers/static/js/main.4fed86e1.js",
     "static/js/453.e347da3b.chunk.js": "/react-router-6-drawers/static/js/453.e347da3b.chunk.js",
     "index.html": "/react-router-6-drawers/index.html",
     "main.537e4070.css.map": "/react-router-6-drawers/static/css/main.537e4070.css.map",
-    "main.b038c148.js.map": "/react-router-6-drawers/static/js/main.b038c148.js.map",
+    "main.4fed86e1.js.map": "/react-router-6-drawers/static/js/main.4fed86e1.js.map",
     "453.e347da3b.chunk.js.map": "/react-router-6-drawers/static/js/453.e347da3b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.537e4070.css",
-    "static/js/main.b038c148.js"
+    "static/js/main.4fed86e1.js"
   ]
 }
