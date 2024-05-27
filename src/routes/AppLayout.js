@@ -6,9 +6,7 @@ function AppLayout () {
       <h1 className="text-3xl font-bold">
         Drawers application
       </h1>
-      <p>Public URL: {process.env.PUBLIC_URL}</p>
-      <p>Node env: {process.env.NODE_ENV}</p>
-      <nav className="mt-8">
+      <nav className="mt-2">
         <ul className="flex space-x-4">
           <li>
             <Link to="/" className="text-blue-500 hover:underline">

@@ -27,7 +27,11 @@ function Users () {
         <h3 className="text-xl font-bold">Albums</h3>
         <ul className="mt-2 list-disc">
           {user?.albums?.map(album => (
-            <li key={album.id} className="ml-4">{album.title}</li>
+            <li key={album.id} className="ml-4">
+              <Link to={`./album/${album.id}`} className="text-blue-500 hover:underline capitalize">
+                {album.title}
+              </Link>
+            </li>
           ))}
         </ul>
       </div>

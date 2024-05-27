@@ -55,8 +55,19 @@ RoutedDrawer.SizingContainer = function RoutedDrawerLayout({
   children,
   size = "small"
 }) {
+  let width
+  switch (size) {
+    case "small":
+      width = "250px"
+      break
+    case "large":
+      width = "450px"
+      break
+    default:
+      width = "350px"
+  }
   return (
-    <div style={{ width: size === "small" ? "250px" : "350px" }}>
+    <div style={{ width }}>
       {children}
     </div>
   );
