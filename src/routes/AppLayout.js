@@ -18,6 +18,11 @@ function AppLayout () {
               Users
             </Link>
           </li>
+          <li>
+            <Link to="/posts" className="text-blue-500 hover:underline">
+              Posts
+            </Link>
+          </li>
         </ul>
       </nav>
       <div className="mt-12">
