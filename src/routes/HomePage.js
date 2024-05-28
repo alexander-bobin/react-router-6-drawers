@@ -1,4 +1,19 @@
+import { useLayoutEffect, useContext } from "react"
+import { useLocation } from "react-router-dom"
+import { DrawerPermanenceContext } from "../common/components/DrawerPermananceContext"
+
 function HomePage () {
+  const location = useLocation()
+  const { setAreDrawersTemporary } = useContext(DrawerPermanenceContext)
+  const searchParams = new URLSearchParams(location.search)
+  const areDrawersTemporary = searchParams.get('areDrawersTemporary')
+  useLayoutEffect(() => {
+    if (areDrawersTemporary === '1') {
+      setAreDrawersTemporary('1')
+    } else if (areDrawersTemporary === '0') {
+      setAreDrawersTemporary('0')
+    }
+  }, [areDrawersTemporary, setAreDrawersTemporary])
   return (
     <>
       <p>
