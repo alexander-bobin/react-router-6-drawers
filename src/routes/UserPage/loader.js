@@ -1,4 +1,4 @@
-async function userLoader ({ params }) {
+async function userPageLoader ({ params }) {
   const user = await fetch(`https://jsonplaceholder.typicode.com/users/${params.userId}`)
   const posts = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${params.userId}`)
   const albums = await fetch(`https://jsonplaceholder.typicode.com/albums?userId=${params.userId}`)
@@ -12,4 +12,4 @@ async function userLoader ({ params }) {
   }
 }
 
-export default userLoader;
+export default userPageLoader;

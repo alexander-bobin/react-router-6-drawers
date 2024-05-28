@@ -1,23 +1,26 @@
 import { Route, createRoutesFromElements } from 'react-router-dom'
 import AppLayout from './routes/AppLayout'
-import Home from './routes/Home'
-import Users from './routes/Users'
-import usersLoader from './routes/Users/loader'
-import User from './routes/User'
-import userLoader from './routes/User/loader'
-import RoutedDrawer from './components/RoutedDrawer'
-import PostDrawer from './routes/PostDrawer'
-import postDrawerLoader from './routes/PostDrawer/loader'
-import CommentsDrawer from './routes/CommentsDrawer'
-import commentsDrawerLoader from './routes/CommentsDrawer/loader'
-import AlbumDrawer from './routes/AlbumDrawer'
-import albumDrawerLoader from './routes/AlbumDrawer/loader'
-import PhotoDrawer from './routes/PhotoDrawer'
-import photoDrawerLoader from './routes/PhotoDrawer/loader'
+import RoutedDrawer from './common/components/RoutedDrawer'
+
+import HomePage from './routes/HomePage'
+
+import UsersPage from './routes/UsersPage'
+import usersPageLoader from './routes/UsersPage/loader'
+import UserPage from './routes/UserPage'
+import userPageLoader from './routes/UserPage/loader'
+
+import UserPostDrawer from './routes/UserPostDrawer'
+import userPostDrawerLoader from './routes/UserPostDrawer/loader'
+import UserPostCommentDrawer from './routes/UserPostCommentDrawer'
+import userPostCommentDrawerLoader from './routes/UserPostCommentDrawer/loader'
+import UserAlbumDrawer from './routes/UserAlbumDrawer'
+import userAlbumDrawerLoader from './routes/UserAlbumDrawer/loader'
+import UserPhotoDrawer from './routes/UserPhotoDrawer'
+import userAlbumPhotoDrawerLoader from './routes/UserPhotoDrawer/loader'
 
 function asRoutedDrawer (routeElement, { size } = { size: 'medium '}) {
   return (
-    <Route element={<RoutedDrawer/>}>
+    <Route element={<RoutedDrawer />}>
       <Route index element={<RoutedDrawer.Close />} />
       <Route element={<RoutedDrawer.Open size={size} />}>
         {routeElement}
@@ -28,25 +31,25 @@ function asRoutedDrawer (routeElement, { size } = { size: 'medium '}) {
 
 const routes = createRoutesFromElements(
   <Route element={<AppLayout />}>
-    <Route path="/" element={<Home />} />
+    <Route path="/" element={<HomePage />} />
     <Route path="/users">
-      <Route index element={<Users />} loader={usersLoader} />
+      <Route index element={<UsersPage />} loader={usersPageLoader} />
 
-      <Route path=":userId" element={<User />} loader={userLoader}>
+      <Route path=":userId" element={<UserPage />} loader={userPageLoader}>
 
         {asRoutedDrawer(
-          <Route path="post/:postId" element={<PostDrawer />} loader={postDrawerLoader}>
+          <Route path="post/:postId" element={<UserPostDrawer />} loader={userPostDrawerLoader}>
             {asRoutedDrawer(
-              <Route path="comments" element={<CommentsDrawer />} loader={commentsDrawerLoader} />,
+              <Route path="comments" element={<UserPostCommentDrawer />} loader={userPostCommentDrawerLoader} />,
               { size: 'small' }
             )}
           </Route>
         )}
 
         {asRoutedDrawer(
-          <Route path="album/:albumId" element={<AlbumDrawer />} loader={albumDrawerLoader}>
+          <Route path="album/:albumId" element={<UserAlbumDrawer />} loader={userAlbumDrawerLoader}>
             {asRoutedDrawer(
-              <Route path="photo/:photoId" element={<PhotoDrawer />} loader={photoDrawerLoader} />,
+              <Route path="photo/:photoId" element={<UserPhotoDrawer />} loader={userAlbumPhotoDrawerLoader} />,
               { size: 'large' }
             )}
           </Route>

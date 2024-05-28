@@ -1,6 +1,6 @@
 import { useLoaderData, Outlet, Link } from "react-router-dom";
 
-function Users () {
+function UserPage () {
   const user = useLoaderData()
   return (
     <>
@@ -42,4 +42,4 @@ function Users () {
   );
 }
 
-export default Users
+export default UserPage

@@ -4,7 +4,7 @@ function AppLayout () {
   return (
     <div className="m-10">
       <h1 className="text-3xl font-bold">
-        Drawers application
+        Routed Drawers application
       </h1>
       <nav className="mt-2">
         <ul className="flex space-x-4">

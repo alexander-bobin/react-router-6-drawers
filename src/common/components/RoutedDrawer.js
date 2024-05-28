@@ -1,3 +1,13 @@
+/*
+Obersvations:
+* The difference between routed drawers here and what we currently have is quite a substantion shift in
+  a developer's mental model.
+* Unlike our current approach where the drawer is on the page and all code is in the launching
+  component, this approach has the drawer as a separate component in the routes file a long way away
+  from the launching component. This will make things like handling onclose callbacks
+  difficult/impossible in the launching component.
+*/
+
 import { Outlet, useNavigate } from "react-router-dom";
 import React, {
   createContext,
@@ -38,6 +48,10 @@ export default function RoutedDrawer({ id }) {
           // `keepMounted` is vital here. Without it, our Outlet won't
           // be mounted and so nothing will be rendered.
           keepMounted
+          // There is no way to conditionally pass `isTemporary` from the router
+          // so we cannot conditionally replace here. That is only a problem for
+          // this demo app. We would not need to conditionally replace in
+          // a real app.
           onClose={() => navigate(".")}
           open={isOpen}
         >

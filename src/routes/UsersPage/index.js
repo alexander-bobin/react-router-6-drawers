@@ -14,7 +14,7 @@ function UserList ({ users }) {
   )
 }
 
-function Users () {
+function UsersPage () {
   const users = useLoaderData()
   return (
     <>
@@ -26,4 +26,4 @@ function Users () {
   );
 }
 
-export default Users
+export default UsersPage
