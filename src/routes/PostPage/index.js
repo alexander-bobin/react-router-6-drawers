@@ -1,5 +1,6 @@
-import { useLoaderData, Outlet, Link } from "react-router-dom";
+import { useLoaderData, Outlet } from "react-router-dom";
 import TextWithNewLines from "../../common/components/TextWithNewLines";
+import DrawerLink from "../../common/components/LinkToDrawer";
 
 function PostPage () {
   const post = useLoaderData()
@@ -12,9 +13,9 @@ function PostPage () {
       </div>
 
       <p className="mt-6">
-        <Link to="./comments" className="text-blue-500 hover:underline">
+        <DrawerLink to="./comments">
           View comments
-        </Link>
+        </DrawerLink>
       </p>
 
       {/* For drawers */}

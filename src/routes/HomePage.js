@@ -1,6 +1,6 @@
 import { useLayoutEffect, useContext } from "react"
 import { useLocation } from "react-router-dom"
-import { DrawerPermanenceContext } from "../common/components/DrawerPermananceContext"
+import { DrawerPermanenceContext } from "../common/components/DrawerPermanenceContext"
 
 function HomePage () {
   const location = useLocation()
@@ -22,6 +22,35 @@ function HomePage () {
       <ul className="mt-4 list-disc">
         <li className="ml-4">Allow usage of drawers where they are permanent places and temporary places</li>
         <li className="ml-4">A code example for "routed drawers". Go to <a href="https://alexander-bobin.github.io/react-router-6-drawers-query-string/" className="text-blue-500 hover:underline">React Router 6 Query String Drawers</a> to see another approach.</li>
+      </ul>
+      <h3 className="mt-6 text-lg font-bold">Important</h3>
+      <p className="mt-2">
+         Do not use the Escape key or click the scrim to close drawers. This is a limitation of this example app. It won't be a problem in a production app.
+      </p>
+      <h3 className="mt-6 text-lg font-bold">Things to try</h3>
+      <ul className="mt-4 list-disc">
+        <li className="ml-4">Open and close drawers then click back and forward</li>
+        <li className="ml-4">Click back while drawers are open</li>
+      </ul>
+      <h3 className="mt-6 text-lg font-bold">What this app has</h3>
+      <ul className="mt-4 list-disc">
+        <li className="ml-4 mb-2">
+          Drawer stacking<br />
+          Users page {'>'} User page {'>'} Post drawer {'>'} Comments drawer
+        </li>
+        <li className="ml-4 mb-2">
+          Tabbed drawers<br />
+          Users page {'>'} User page {'>'} Tasks drawer
+        </li>
+        <li className="ml-4 mb-2">
+          Different sized drawers<br />
+          Users page {'>'} User page {'>'} Album drawer {'>'} Photo drawer
+        </li>
+        <li className="ml-4 mb-2">
+          Shared drawers<br />
+          Users page {'>'} User page {'>'} Post drawer {'>'} Comments drawer<br/>
+          Posts page {'>'} Post page {'>'} Comments drawer
+        </li>
       </ul>
     </>
   )

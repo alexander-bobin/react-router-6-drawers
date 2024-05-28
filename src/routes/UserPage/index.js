@@ -1,4 +1,5 @@
-import { useLoaderData, Outlet, Link } from "react-router-dom";
+import { useLoaderData, Outlet } from "react-router-dom";
+import DrawerLink from "../../common/components/LinkToDrawer";
 
 function UserPage () {
   const user = useLoaderData()
@@ -11,9 +12,9 @@ function UserPage () {
       </div>
       <div className="mt-8">
         <h3 className="text-xl font-bold">Tasks</h3>
-        <Link to="./tasks" className="text-blue-500 hover:underline">
+        <DrawerLink to="./tasks">
           View tasks
-        </Link>
+        </DrawerLink>
       </div>
       <div className="mt-8">
         <h3 className="text-xl font-bold">Posts</h3>
@@ -21,9 +22,9 @@ function UserPage () {
           {user?.posts?.map(post => {
             return (
               <li key={post.id} className="ml-4">
-                <Link to={`./post/${post.id}`} className="text-blue-500 hover:underline capitalize">
+                <DrawerLink to={`./post/${post.id}`}>
                   {post.title}
-                </Link>
+                </DrawerLink>
               </li>
             )
           })}
@@ -34,9 +35,9 @@ function UserPage () {
         <ul className="mt-2 list-disc">
           {user?.albums?.map(album => (
             <li key={album.id} className="ml-4">
-              <Link to={`./album/${album.id}`} className="text-blue-500 hover:underline capitalize">
+              <DrawerLink to={`./album/${album.id}`}>
                 {album.title}
-              </Link>
+              </DrawerLink>
             </li>
           ))}
         </ul>

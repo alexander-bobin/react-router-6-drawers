@@ -1,9 +1,10 @@
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import DrawerHeader from "../../common/components/DrawerHeader";
+import useNavigateFromDrawer from "../../common/utils/navigateFromDrawer";
 
 function UserAlbumPhotoDrawer () {
   const photo = useLoaderData()
-  const navigate = useNavigate()
+  const navigate = useNavigateFromDrawer()
   return (
     <>
       <DrawerHeader category="Photo" title={photo.title} onClose={() => navigate('..')} />

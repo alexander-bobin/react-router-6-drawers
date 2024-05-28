@@ -1,5 +1,5 @@
 import { Outlet, Link } from "react-router-dom";
-import { DrawerPermanenceProvider } from "../common/components/DrawerPermananceContext";
+import { DrawerPermanenceProvider } from "../common/components/DrawerPermanenceContext";
 import DrawerStatus from "../common/components/DrawerStatus";
 
 function AppLayout () {

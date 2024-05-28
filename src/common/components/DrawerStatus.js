@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { Link } from "react-router-dom"
-import { DrawerPermanenceContext } from "./DrawerPermananceContext"
+import { DrawerPermanenceContext } from "./DrawerPermanenceContext"
 
 function DrawerStatus () {
   const { areDrawersTemporary } = useContext(DrawerPermanenceContext)
