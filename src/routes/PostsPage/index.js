@@ -1,4 +1,5 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Suspense } from "react";
+import { Await, Link, useLoaderData } from "react-router-dom";
 
 function PostList ({ posts }) {
   return (
@@ -15,12 +16,17 @@ function PostList ({ posts }) {
 }
 
 function PostsPage () {
-  const posts = useLoaderData()
+  const data = useLoaderData()
+
   return (
     <>
       <h2 className="text-2xl font-bold">Posts</h2>
       <div className="mt-4">
-        <PostList {...{ posts }} />
+        <Suspense fallback={<p className="text-slate-500">...</p>}>
+          <Await resolve={data.posts}>
+            {posts => <PostList posts={posts} />}
+          </Await>
+        </Suspense>
       </div>
     </>
   );

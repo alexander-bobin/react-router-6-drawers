@@ -1,15 +1,21 @@
+import { defer } from "react-router-dom"
+
 async function userPageLoader ({ params }) {
-  const user = await fetch(`https://jsonplaceholder.typicode.com/users/${params.userId}`)
-  const posts = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${params.userId}`)
-  const albums = await fetch(`https://jsonplaceholder.typicode.com/albums?userId=${params.userId}`)
-  const userData = await user.json()
-  const postsData = await posts.json()
-  const albumsData = await albums.json()
-  return {
-    ...userData,
-    posts: postsData,
-    albums: albumsData
-  }
+  const userPromise = Promise.all([
+    fetch(`https://jsonplaceholder.typicode.com/users/${params.userId}`).then(res => res.json()),
+    fetch(`https://jsonplaceholder.typicode.com/posts?userId=${params.userId}`).then(res => res.json()),
+    fetch(`https://jsonplaceholder.typicode.com/albums?userId=${params.userId}`).then(res => res.json())
+  ]).then(([user, posts, albums]) => {
+    return {
+      ...user,
+      posts,
+      albums
+    }
+  })
+
+  return defer({
+    user: userPromise
+  })
 }
 
 export default userPageLoader;

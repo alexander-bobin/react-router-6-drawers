@@ -1,14 +1,22 @@
+import { defer } from "react-router-dom"
+
 async function postPageLoader ({ params }) {
-  const post = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.postId}`)
-  const postData = await post.json()
+  const postPromise = fetch(`https://jsonplaceholder.typicode.com/posts/${params.postId}`)
+    .then(res => res.json())
+    .then(post => {
+      return fetch(`https://jsonplaceholder.typicode.com/users/${post.userId}`)
+        .then(res => res.json())
+        .then(user => {
+          return {
+            ...post,
+            user,
+          }
+        })
+    })
 
-  const user = await fetch(`https://jsonplaceholder.typicode.com/users/${postData.userId}`)
-  const userData = await user.json()
-
-  return {
-    ...postData,
-    user: userData,
-  }
+  return defer({
+    post: postPromise
+  })
 }
 
 export default postPageLoader;

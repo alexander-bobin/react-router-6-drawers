@@ -1,5 +1,10 @@
+import { defer } from "react-router-dom"
+
 async function postsPageLoader () {
-  return fetch('https://jsonplaceholder.typicode.com/posts')
+  const postsPromise = fetch('https://jsonplaceholder.typicode.com/posts').then(res => res.json())
+  return defer({
+    posts: postsPromise
+  })
 }
 
 export default postsPageLoader;

@@ -12,7 +12,7 @@ function UserAlbumDrawer () {
       <div className="flex flex-wrap gap-3">
         {album?.photos?.map(photo => {
           return (
-            <LinkToDrawer to={`./photo/${photo.id}`} key={photo.id} className="w-14">
+            <LinkToDrawer to={`./photo/${photo.id}`} key={photo.id} className="w-14 h-14 bg-slate-200">
               <img src={photo.thumbnailUrl} alt={photo.title} width="100" />
             </LinkToDrawer>
           )
