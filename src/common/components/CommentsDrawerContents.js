@@ -1,6 +1,6 @@
 import DrawerHeader from "./DrawerHeader"
 
-// CommentsDrawerContents is used in the UserPage and PostPage
+// Note: CommentsDrawerContents is used in the UserPage and PostPage
 function CommentsDrawerContents ({ comments, onClose }) {
   return (
     <>

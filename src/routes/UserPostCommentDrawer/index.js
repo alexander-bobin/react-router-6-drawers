@@ -4,6 +4,7 @@ import CommentsDrawerContents from "../../common/components/CommentsDrawerConten
 function UserPostCommentDrawer () {
   const comments = useLoaderData()
   const navigate = useNavigate()
+  // Note: Here we are using a shared drawer contents
   return <CommentsDrawerContents comments={comments} onClose={() => navigate('..')} />
 }
 

@@ -10,6 +10,12 @@ function UserPage () {
         <p>Phone: {user.phone}</p>
       </div>
       <div className="mt-8">
+        <h3 className="text-xl font-bold">Tasks</h3>
+        <Link to="./tasks" className="text-blue-500 hover:underline">
+          View tasks
+        </Link>
+      </div>
+      <div className="mt-8">
         <h3 className="text-xl font-bold">Posts</h3>
         <ul className="mt-2 list-disc">
           {user?.posts?.map(post => {

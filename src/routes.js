@@ -15,8 +15,14 @@ import UserPostCommentDrawer from './routes/UserPostCommentDrawer'
 import userPostCommentDrawerLoader from './routes/UserPostCommentDrawer/loader'
 import UserAlbumDrawer from './routes/UserAlbumDrawer'
 import userAlbumDrawerLoader from './routes/UserAlbumDrawer/loader'
-import UserPhotoDrawer from './routes/UserPhotoDrawer'
-import userAlbumPhotoDrawerLoader from './routes/UserPhotoDrawer/loader'
+import UserAlbumPhotoDrawer from './routes/UserAlbumPhotoDrawer'
+import userAlbumPhotoDrawerLoader from './routes/UserAlbumPhotoDrawer/loader'
+import UserTasksDrawer from './routes/UserTasksDrawer'
+
+import UserTasksOpenDrawerTab from './routes/UserTasksOpenDrawerTab'
+import userTasksOpenDrawerTabLoader from './routes/UserTasksOpenDrawerTab/loader'
+import UserTasksCompleteDrawerTab from './routes/UserTasksCompleteDrawerTab'
+import userTasksCompleteDrawerTabLoader from './routes/UserTasksCompleteDrawerTab/loader'
 
 function asRoutedDrawer (routeElement, { size } = { size: 'medium '}) {
   return (
@@ -49,9 +55,16 @@ const routes = createRoutesFromElements(
         {asRoutedDrawer(
           <Route path="album/:albumId" element={<UserAlbumDrawer />} loader={userAlbumDrawerLoader}>
             {asRoutedDrawer(
-              <Route path="photo/:photoId" element={<UserPhotoDrawer />} loader={userAlbumPhotoDrawerLoader} />,
+              <Route path="photo/:photoId" element={<UserAlbumPhotoDrawer />} loader={userAlbumPhotoDrawerLoader} />,
               { size: 'large' }
             )}
+          </Route>
+        )}
+
+        {asRoutedDrawer(
+          <Route path="tasks" element={<UserTasksDrawer />}>
+            <Route index element={<UserTasksOpenDrawerTab />} loader={userTasksOpenDrawerTabLoader} />)
+            <Route path="completed" element={<UserTasksCompleteDrawerTab />} loader={userTasksCompleteDrawerTabLoader} />)
           </Route>
         )}
       </Route>
