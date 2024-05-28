@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/react-router-6-drawers/static/css/main.af23c754.css",
-    "main.js": "/react-router-6-drawers/static/js/main.ebf3d71f.js",
+    "main.css": "/react-router-6-drawers/static/css/main.8503362b.css",
+    "main.js": "/react-router-6-drawers/static/js/main.fb091c24.js",
     "static/js/453.e347da3b.chunk.js": "/react-router-6-drawers/static/js/453.e347da3b.chunk.js",
     "index.html": "/react-router-6-drawers/index.html",
-    "main.af23c754.css.map": "/react-router-6-drawers/static/css/main.af23c754.css.map",
-    "main.ebf3d71f.js.map": "/react-router-6-drawers/static/js/main.ebf3d71f.js.map",
+    "main.8503362b.css.map": "/react-router-6-drawers/static/css/main.8503362b.css.map",
+    "main.fb091c24.js.map": "/react-router-6-drawers/static/js/main.fb091c24.js.map",
     "453.e347da3b.chunk.js.map": "/react-router-6-drawers/static/js/453.e347da3b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.af23c754.css",
-    "static/js/main.ebf3d71f.js"
+    "static/css/main.8503362b.css",
+    "static/js/main.fb091c24.js"
   ]
 }
