@@ -10,7 +10,7 @@ function DrawerStatus () {
   return (
     <div className={`border-4 p-3 rounded-lg ${colorClasses}`}>
       <p>
-        Drawers are <strong>{areDrawersTemporary ? 'temporary' : 'permanent'}</strong>.
+        Drawers are <strong>{areDrawersTemporary && 'NOT'} a new step</strong>.
         &nbsp;<Link to={`/.?areDrawersTemporary=${areDrawersTemporary ? '0' : '1'}`} className="text-cyan-600 hover:underline">Change</Link>
       </p>
     </div>
