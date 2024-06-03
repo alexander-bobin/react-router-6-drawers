@@ -17,11 +17,12 @@ import React, {
   useState
 } from "react";
 import { Drawer as MuiDrawer } from "@mui/material";
+import useGetUrlWithCurrentSearchParams from "../utils/useGetUrlWithCurrentSearchParams";
 
 const DrawerRouteContext = createContext();
 const DrawerRouteContextProvider = DrawerRouteContext.Provider;
 
-export default function RoutedDrawer({ id }) {
+export default function RoutedDrawer({ id, retainedQueryStringParamsOnClose }) {
   const navigate = useNavigate();
   // This state is set by the RoutedDrawer.Open and
   // RoutedDrawer.Close
@@ -29,7 +30,10 @@ export default function RoutedDrawer({ id }) {
   // This let's us maintain a good closing animation.
   // If that's not important to us, we can avoid some
   // complexity.
-  const sizeRef = useRef("small");
+  const sizeRef = useRef("medium");
+
+  const closeUrl = useGetUrlWithCurrentSearchParams(".", retainedQueryStringParamsOnClose)
+  console.log(`${id ? id : 'unknown-drawer'} closeUrl: ${closeUrl}`)
 
   return (
     <DrawerRouteContextProvider
@@ -48,11 +52,7 @@ export default function RoutedDrawer({ id }) {
           // `keepMounted` is vital here. Without it, our Outlet won't
           // be mounted and so nothing will be rendered.
           keepMounted
-          // There is no way to conditionally pass `isTemporary` from the router
-          // so we cannot conditionally replace here. That is only a problem for
-          // this demo app. We would not need to conditionally replace in
-          // a real app.
-          onClose={() => navigate(".")}
+          onClose={() => navigate(closeUrl)}
           open={isOpen}
         >
           <div className="m-6">
@@ -67,7 +67,7 @@ export default function RoutedDrawer({ id }) {
 // This component is used to size the drawer correctly.
 RoutedDrawer.SizingContainer = function RoutedDrawerLayout({
   children,
-  size = "small"
+  size = "medium"
 }) {
   let width
   switch (size) {
@@ -89,7 +89,7 @@ RoutedDrawer.SizingContainer = function RoutedDrawerLayout({
 
 // If this component is rendered as a Route layout element,
 // it will ensure the parent Drawer is opened.
-RoutedDrawer.Open = function RoutedDrawerOpen({ size = "small" }) {
+RoutedDrawer.Open = function RoutedDrawerOpen({ size = "medium" }) {
   const { setIsOpen, setSize } = useContext(DrawerRouteContext);
 
   useEffect(() => {

@@ -28,10 +28,14 @@ import PostPage from './routes/PostPage'
 import postPageLoader from './routes/PostPage/loader'
 import PostPageCommentDrawer from './routes/PostPageCommentsDrawer'
 import postPageCommentsDrawerLoader from './routes/PostPageCommentsDrawer/loader'
+import PostsSettingsDrawer from './routes/PostsSettingsDrawer'
 
-function asRoutedDrawer (routeElement, { size } = { size: 'medium '}) {
+function asRoutedDrawer (
+  id,
+  routeElement,
+  { size, retainedQueryStringParamsOnClose } = { size: 'medium ', retainedQueryStringParamsOnClose: [] }) {
   return (
-    <Route element={<RoutedDrawer />}>
+    <Route element={<RoutedDrawer id={id} retainedQueryStringParamsOnClose={retainedQueryStringParamsOnClose} />}>
       <Route index element={<RoutedDrawer.Close />} />
       <Route element={<RoutedDrawer.Open size={size} />}>
         {routeElement}
@@ -49,10 +53,12 @@ const routes = createRoutesFromElements(
 
         {/* Stacked drawers */}
         {asRoutedDrawer(
+          'user-post-drawer',
           <Route path="post/:postId" element={<UserPostDrawer />} loader={userPostDrawerLoader}>
 
             {/* Drawer which shares contents */}
             {asRoutedDrawer(
+              'user-post-comments-drawer',
               <Route path="comments" element={<UserPostCommentsDrawer />} loader={userPostCommentsDrawerLoader} />,
               { size: 'small' }
             )}
@@ -61,8 +67,10 @@ const routes = createRoutesFromElements(
 
         {/* Stacked drawers */}
         {asRoutedDrawer(
+          'user-album-drawer',
           <Route path="album/:albumId" element={<UserAlbumDrawer />} loader={userAlbumDrawerLoader}>
             {asRoutedDrawer(
+              'user-album-photo-drawer',
               <Route path="photo/:photoId" element={<UserAlbumPhotoDrawer />} loader={userAlbumPhotoDrawerLoader} />,
               { size: 'large' }
             )}
@@ -71,6 +79,7 @@ const routes = createRoutesFromElements(
 
         {/* Tabbed drawer */}
         {asRoutedDrawer(
+          'user-tasks-drawer',
           <Route path="tasks" element={<UserTasksDrawer />}>
             <Route index element={<UserTasksOpenDrawerTab />} loader={userTasksOpenDrawerTabLoader} />)
             <Route path="completed" element={<UserTasksCompleteDrawerTab />} loader={userTasksCompleteDrawerTabLoader} />)
@@ -78,16 +87,24 @@ const routes = createRoutesFromElements(
         )}
       </Route>
     </Route>
-    <Route path="posts">
-      <Route index element={<PostsPage />} loader={postsPageLoader} />
-      <Route path=":postId" element={<PostPage />} loader={postPageLoader} >
 
-        {/* Drawer which shares contents */}
-        {asRoutedDrawer(
-          <Route path="comments" element={<PostPageCommentDrawer />} loader={postPageCommentsDrawerLoader} />,
-          { size: 'small' }
-        )}
-      </Route>
+    {/* Note: Cannot nest everything undex 'posts' because index routes can't have children */}
+    {/* Another option, move list to '/list' undex 'posts' */}
+    <Route path="posts" element={<PostsPage />} loader={postsPageLoader}>
+      {asRoutedDrawer(
+        'posts-settings-drawer',
+        <Route path="settings" element={<PostsSettingsDrawer />} />,
+        { retainedQueryStringParamsOnClose: ['userId'] }
+      )}
+    </Route>
+    <Route path="posts/:postId" element={<PostPage />} loader={postPageLoader} >
+
+      {/* Drawer which shares contents */}
+      {asRoutedDrawer(
+        'post-comments-drawer',
+        <Route path="comments" element={<PostPageCommentDrawer />} loader={postPageCommentsDrawerLoader} />,
+        { size: 'small' }
+      )}
     </Route>
   </Route>
 )
